@@ -103,7 +103,13 @@ class LoggingTool {
             auto now = system_clock::now();
             auto ms = duration_cast<milliseconds>(now.time_since_epoch()) % 1000;
             auto timer = system_clock::to_time_t(now);
-            std::tm bt = *std::localtime(&timer);
+            struct std::tm bt;
+            bool result = localtime_s(&bt, &timer);
+
+            if (result != 0) {
+                std::cout << "localtime_s failed" << std::endl;
+                return "XX:XX:XX.XXX";
+            }
 
             std::ostringstream oss;
 
