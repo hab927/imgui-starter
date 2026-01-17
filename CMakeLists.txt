@@ -47,7 +47,7 @@ else() # Linux
     set(BCKD_FILE "imgui/imgui_impl_opengl3.cpp")
 endif()
 
-add_executable(demo Application.cpp
+add_executable(loggingtool Application.cpp
                           imgui/imgui_demo.cpp
                           imgui/imgui_draw.cpp
                           imgui/imgui_tables.cpp
@@ -61,10 +61,10 @@ add_executable(demo Application.cpp
 
 
 if(MACOS OR LINUX)
-    target_link_libraries(demo ${OPENGL_gl_LIBRARY} glfw)
+    target_link_libraries(loggingtool ${OPENGL_gl_LIBRARY} glfw)
 elseif(WINDOWS)
     # Windows: Link DirectX11 and required Windows libraries
-    target_link_libraries(demo 
+    target_link_libraries(loggingtool 
         d3d11.lib 
         d3dcompiler.lib 
         dxgi.lib 
@@ -76,7 +76,7 @@ endif()
 
 # Copy resources to build directory
 add_custom_command(
-  TARGET demo POST_BUILD
+  TARGET loggingtool POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory
           "${CMAKE_SOURCE_DIR}/resources"
           "$<TARGET_FILE_DIR:demo>/resources"

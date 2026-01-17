@@ -146,7 +146,9 @@ int main(int, char**)
         ImGui_ImplDX11_NewFrame();
         ImGui_ImplWin32_NewFrame();
         ImGui::NewFrame();
+        ClassGame::RenderLogDemo();
         ClassGame::RenderGame();
+        ClassGame::RenderConsole();
 
         // Rendering
         ImGui::Render();
