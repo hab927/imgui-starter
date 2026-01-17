@@ -1,10 +1,14 @@
-# imgui-starter
+# Logging System Basics
 
-Using the provided code provided here you have a base Dear IMGUI project for Windows and macOS. There is a basic CMakefile in this project that includes the necessary files to create an application that brings up just a basic screen.
+## Please check the comments at the top of the main `game` class as well!
 
-You must add a logging system to this code that you will be using THROUGHOUT the quarter. This logging system should do two things.
+# Approach
+**Platform used: Windows**
 
-It should be able to log to a Dear IMGUI debug console
-It should also log its output to a file.
+The general approach that I took to writing this code was by messing around with the demo window. I also took a look at the example Debug Log window provided by the Demo Window that is created on default.
 
-For the submission, make a branch of this repo and submit a new GitHub URL
+I also consulted the imgui docs on the source Dear Imgui repository and corresponding StackOverflow posts. Most of the work I did was largely by trial and error and cursory research. I also had to spend a decent chunk of time familiarizing myself with C++ again, since it's been 2 years since I used the language. 
+
+# Clarifying Questions
+
+I asked Professor Devine for the meaning of two of the rubric items, those two being "Contains levels of logging" and "Can set level of log to console". According to the professor, this means controlling what types of log messages show up, like filtering options.
