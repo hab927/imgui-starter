@@ -20,7 +20,8 @@ class LoggingTool {
         enum Type {
             NORMAL,
             WARNING,
-            ERROR
+            ERROR,
+            NONLOG
         };
 
         typedef std::vector<std::pair<Type, std::string>> Log;
@@ -28,6 +29,10 @@ class LoggingTool {
         static LoggingTool& GetInstance() {
             static LoggingTool instance;
             return instance;
+        }
+
+        void SendNonlog(std::string msg) {
+            full_log.push_back(std::make_pair(NONLOG, msg + "\n"));
         }
 
         void LogNormal(std::string msg) {
@@ -83,7 +88,7 @@ class LoggingTool {
         }
 
         void DisplayHelpMessage() {
-            full_log.push_back(std::make_pair(NORMAL, help_message + "\n"));
+            full_log.push_back(std::make_pair(NONLOG, help_message + "\n"));
         }
 
     private:

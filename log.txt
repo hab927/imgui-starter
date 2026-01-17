@@ -1,27 +1,7 @@
-[13:59:06.476] Game started successfully
-[13:59:06.477] [GAME] Application initialized
-[13:59:10.181] [GAME] Current value: 50
-[13:59:10.306] [GAME] Current value: 50
-[13:59:10.430] [GAME] Current value: 50
-[13:59:10.539] [GAME] Current value: 50
-[13:59:11.572] ERROR: You pressed the error button!
-[13:59:11.713] ERROR: You pressed the error button!
-[13:59:11.997] WARNING: Warning! Beep beep!
-[13:59:12.174] WARNING: Warning! Beep beep!
-[13:59:12.915] Log cleared.
-[13:59:13.074] Log cleared.
-[13:59:13.190] Log cleared.
-[13:59:14.108] ERROR: You pressed the error button!
-[13:59:14.240] ERROR: You pressed the error button!
-[13:59:14.507] Normal log!
-[13:59:14.623] Normal log!
-[13:59:14.747] Normal log!
-[13:59:14.873] Normal log!
-[13:59:15.004] Normal log!
-[13:59:15.115] Normal log!
-[13:59:15.230] Normal log!
-[13:59:15.607] ERROR: You pressed the error button!
-[13:59:15.825] WARNING: Warning! Beep beep!
-[13:59:15.991] WARNING: Warning! Beep beep!
-[13:59:16.131] WARNING: Warning! Beep beep!
-[13:59:16.206] WARNING: Warning! Beep beep!
+[14:45:37.271] Game started successfully
+[14:45:37.272] [GAME] Application initialized
+[14:45:44.301] WARNING: Warning! Beep beep!
+[14:45:44.425] WARNING: Warning! Beep beep!
+[14:45:44.551] WARNING: Warning! Beep beep!
+[14:45:44.769] ERROR: You pressed the error button!
+[14:45:44.901] ERROR: You pressed the error button!

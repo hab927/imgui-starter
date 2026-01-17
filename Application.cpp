@@ -111,18 +111,18 @@ namespace ClassGame {
         // this renders the debug console
         void RenderConsole() {
             LoggingTool& logger = LoggingTool::GetInstance();
+
             static bool auto_scroll = true;
+            static bool show_info = true;
+            static bool show_warns = true;
+            static bool show_errs = true;
+            static bool show_non_logs = true;
 
             ImGui::Begin("Debug Log");
 
             // header
-            ImGui::BeginChild("Header", ImVec2(0, 62), true);
-            ImGui::SetNextItemWidth(160.0f);
-            if (ImGui::BeginCombo(" ", "Options")) {
-                if (ImGui::Checkbox("autoscroll", &auto_scroll)) {};
-                ImGui::EndCombo();
-            }
-            ImGui::SameLine();
+            ImGui::BeginChild("Header", ImVec2(0, 0), ImGuiChildFlags_AutoResizeY | ImGuiChildFlags_AlwaysAutoResize);
+
             if (ImGui::Button("test normal")) {
                 logger.LogNormal("Normal log!");
             }
@@ -142,6 +142,18 @@ namespace ClassGame {
             if (ImGui::Button("clear log")) {
                 logger.ClearLog();
             }
+            ImGui::Separator();
+            if (ImGui::Checkbox("autoscroll", &auto_scroll)) {};
+            ImGui::Separator();
+            ImGui::Text("Filtering options");
+            ImGui::SameLine();
+            if (ImGui::Checkbox("info logs", &show_info)) {};
+            ImGui::SameLine();
+            if (ImGui::Checkbox("warning logs", &show_warns)) {};
+            ImGui::SameLine();
+            if (ImGui::Checkbox("error logs", &show_errs)) {};
+            ImGui::SameLine();
+            if (ImGui::Checkbox("non-logs", &show_non_logs)) {};
             ImGui::EndChild();
             
             // console output
@@ -152,16 +164,25 @@ namespace ClassGame {
             for (int i = 0; i < logger.GetLog().size(); i++) {
                 switch (log[i].first) {
                     case LoggingTool::Type::ERROR:
-                        ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 0, 0, 255));
+                        if (!show_errs) break;
+                        ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 70, 70, 255));
                         ImGui::TextWrapped(log[i].second.c_str());
                         ImGui::PopStyleColor();
                         break;
                     case LoggingTool::Type::WARNING:
-                        ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 255, 0, 255));
+                        if (!show_warns) break;
+                        ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(220, 150, 0, 255));
                         ImGui::TextWrapped(log[i].second.c_str());
                         ImGui::PopStyleColor();
                         break;
-                    default: // normal log message
+                    case LoggingTool::Type::NORMAL:
+                        if (!show_info) break;
+                        ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(150, 150, 150, 255));
+                        ImGui::TextWrapped(log[i].second.c_str());
+                        ImGui::PopStyleColor();
+                        break;
+                    default: // non-log message (for example: help)
+                        if (!show_non_logs) break;
                         ImGui::TextWrapped(log[i].second.c_str());
                         break;
                 }
@@ -177,7 +198,7 @@ namespace ClassGame {
             ImGui::BeginChild("ConsoleInput", ImVec2(0, 62), true);
             if (ImGui::InputText("Console", buffer, IM_ARRAYSIZE(buffer), ImGuiInputTextFlags_EnterReturnsTrue)) {
                 std::string input = buffer;
-                logger.LogNormal("User Typed: " + input);
+                logger.SendNonlog("User Typed: " + input);
                 buffer[0] = '\0';
                 ImGui::SetKeyboardFocusHere(-1);
             };
