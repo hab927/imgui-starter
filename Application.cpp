@@ -5,10 +5,30 @@
 #include <iostream>
 
 namespace ClassGame {
+        // #########################
+        //          CHANGES
+        // #########################
+        // 
+        // Changes I made to this namespace ClassGame:
+        // - added the RenderConsole() and changed RenderGame() to RenderLogDemo(), used RenderGame() to contain game controls
+        // - added global variables buffer and counter
+        // - added two new windows: Debug Log and Game Window.
+        // - Debug Log implements the console window with user input, help button, filtering, autoscroll, and test logs.
+        // - Game Window implements a game that can be used to interface with Debug Log to log game properties and events.
         //
+        // Changes I made to Application.h:
+        // - added RenderConsole() and RenderLogDemo() to reflect the above changes.
+        //
+        // Changes I made to CMakeLists.txt:
+        // - changed executable name from demo to loggingtool.
+        //
+        // Changes I made to main_win32.cpp:
+        // - inserted ClassGame::RenderConsole() and ClassGame::RenderLogDemo().
+        //
+        // Changes I made to README.md:
+        // - edited to fit the requirements in the Canvas assignment
+
         // our global variables
-        //
-        void RenderConsole();
         char buffer[128] = "";
 
         // game stuff

@@ -1,7 +1,0 @@
-[14:45:37.271] Game started successfully
-[14:45:37.272] [GAME] Application initialized
-[14:45:44.301] WARNING: Warning! Beep beep!
-[14:45:44.425] WARNING: Warning! Beep beep!
-[14:45:44.551] WARNING: Warning! Beep beep!
-[14:45:44.769] ERROR: You pressed the error button!
-[14:45:44.901] ERROR: You pressed the error button!
