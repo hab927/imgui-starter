@@ -24,22 +24,6 @@ class LoggingTool {
         };
 
         typedef std::vector<std::pair<Type, std::string>> Log;
-
-        LoggingTool() {
-            full_log = {};
-
-            // NOTE: on my machine, this starts in the \build\ directory, goes out, goes to imgui-starter, and outputs to log.txt.
-            // It might be different for you!
-            log_file = "../imgui-starter/log.txt";
-
-            // clear contents of log
-            std::ofstream log_stream(log_file, std::ios::trunc);
-            log_stream.close();
-        }
-
-        ~LoggingTool() {
-            // if i need to do something when it closes
-        }
         
         static LoggingTool& GetInstance() {
             static LoggingTool instance;
@@ -135,5 +119,21 @@ class LoggingTool {
             log_stream << "\n";
             log_stream.flush();
             log_stream.close();
+        }
+
+        LoggingTool() {
+            full_log = {};
+
+            // NOTE: on my machine, this starts in the \build\ directory, goes out, goes to imgui-starter, and outputs to log.txt.
+            // It might be different for you!
+            log_file = "../imgui-starter/log.txt";
+
+            // clear contents of log
+            std::ofstream log_stream(log_file, std::ios::trunc);
+            log_stream.close();
+        }
+
+        ~LoggingTool() {
+            // if i need to do something when it closes
         }
 };
