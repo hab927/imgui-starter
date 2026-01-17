@@ -59,6 +59,7 @@ add_executable(demo Application.cpp
                           ${IMPL_FILE}
                 )
 
+
 if(MACOS OR LINUX)
     target_link_libraries(demo ${OPENGL_gl_LIBRARY} glfw)
 elseif(WINDOWS)

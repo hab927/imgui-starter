@@ -1,10 +1,14 @@
 #include "Application.h"
+#include "Logger.h"
 #include "imgui/imgui.h"
+
+#include <iostream>
 
 namespace ClassGame {
         //
         // our global variables
         //
+        void RenderConsole();
 
         //
         // game starting point
@@ -13,8 +17,9 @@ namespace ClassGame {
         void GameStartUp() 
         {
             // Initialize logging system
-//            Logger& logger = Logger::GetInstance();
-//            logger.LogInfo("Game started successfully");
+
+            LoggingTool& logger = LoggingTool::GetInstance();
+            logger.LogInfo("Game started successfully");
 //            logger.LogGameEvent("Application initialized");
         }
 
@@ -24,6 +29,7 @@ namespace ClassGame {
         //
         void RenderGame() 
         {
+
             ImGui::DockSpaceOverViewport();
             ImGui::ShowDemoWindow();
 
@@ -36,6 +42,32 @@ namespace ClassGame {
                 ImGui::LogText("Hello, world!");
                 ImGui::LogFinish();
             }
+            ImGui::End();
+
+            RenderConsole();
+        }
+
+        void RenderConsole() {
+            LoggingTool& logger = LoggingTool::GetInstance();
+
+            ImGui::Begin("Debug Log");
+            if (ImGui::Button("test log message")) {
+                logger.LogInfo("The button has been pressed.");
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("test error")) {
+                logger.ClearLog();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("clear log")) {
+                logger.ClearLog();
+            }
+            
+            ImGui::BeginChild("LogOutput");
+            ImGui::Text(logger.GetLog().c_str());
+            ImGui::SetScrollHereY(1.0f);
+            ImGui::EndChild();
+
             ImGui::End();
         }
 
