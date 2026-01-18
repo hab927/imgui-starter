@@ -79,7 +79,7 @@ add_custom_command(
   TARGET loggingtool POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_directory
           "${CMAKE_SOURCE_DIR}/resources"
-          "$<TARGET_FILE_DIR:demo>/resources"
+          "$<TARGET_FILE_DIR:loggingtool>/resources"
   COMMENT "Copying resources to runtime output dir"
 )
 
