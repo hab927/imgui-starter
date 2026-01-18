@@ -138,6 +138,9 @@ namespace ClassGame {
             static bool show_errs = true;
             static bool show_non_logs = true;
 
+            static const char* severities[] = { "1 (compact)", "2 (detailed)", "3 (verbose)"};
+            static int chosen_severity = 2;
+
             ImGui::Begin("Debug Log");
 
             // header
@@ -162,10 +165,13 @@ namespace ClassGame {
             if (ImGui::Button("clear log")) {
                 logger.ClearLog();
             }
-            ImGui::Separator();
+            ImGui::SameLine();
             if (ImGui::Checkbox("autoscroll", &auto_scroll)) {};
             ImGui::Separator();
-            ImGui::Text("Filtering options");
+            ImGui::SetNextItemWidth(150);
+            ImGui::Combo("Verbosity (1: info, 2 adds warns, 3 adds errors)", &chosen_severity, severities, IM_ARRAYSIZE(severities));
+            ImGui::Separator();
+            ImGui::Text("Filter by:");
             ImGui::SameLine();
             if (ImGui::Checkbox("info logs", &show_info)) {};
             ImGui::SameLine();
@@ -185,12 +191,14 @@ namespace ClassGame {
                 switch (log[i].first) {
                     case LoggingTool::Type::ERROR:
                         if (!show_errs) break;
+                        if (chosen_severity < 2) break;
                         ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255, 70, 70, 255));
                         ImGui::TextWrapped(log[i].second.c_str());
                         ImGui::PopStyleColor();
                         break;
                     case LoggingTool::Type::WARNING:
                         if (!show_warns) break;
+                        if (chosen_severity < 1) break;
                         ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(220, 150, 0, 255));
                         ImGui::TextWrapped(log[i].second.c_str());
                         ImGui::PopStyleColor();
